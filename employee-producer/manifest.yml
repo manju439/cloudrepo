@@ -1,0 +1,13 @@
+---
+instances: 1
+memory: 1G
+path: target/employee-producer-0.0.1-SNAPSHOT.jar
+applications:
+  - name: employee-producer-app
+    services:
+      - service-registry
+      - elephant-sql
+      - config-server
+env:
+   SPRING_PROFILES_ACTIVE: dev
+    
