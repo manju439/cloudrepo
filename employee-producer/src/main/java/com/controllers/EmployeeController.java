@@ -16,21 +16,20 @@ import com.model.Employee;
 
 @RestController
 public class EmployeeController {
-	@Autowired
-	DataSource datasource;
+    @Autowired
+    DataSource datasource;
 
-	@Autowired
-	JdbcTemplate jdbcTemplate;
+    @Autowired
+    JdbcTemplate jdbcTemplate;
 
-	@RequestMapping(value = "/employee/{empid}", method = RequestMethod.GET)
-	public String getEmployeeDetailsById(@PathVariable("empid")String id) {
+    @RequestMapping(value = "/employee/{empid}", method = RequestMethod.GET)
+    public String getEmployeeDetailsById(@PathVariable("empid") String id) {
 
-		System.out.println("=================before==========================");
-		List<Employee> el = jdbcTemplate.query("select * from employee where empid='"+id+"'", new BeanPropertyRowMapper(Employee.class));
-		
-		if(el.size()>0)return el.get(0).toString();
-		else return   "No Matched Records Found";
-		//return emp;
-	}
+        StringBuilder query = new StringBuilder("select * from employee where empid='" + id + "'");
+        List<Employee> el = jdbcTemplate.query(query.toString(), new BeanPropertyRowMapper(Employee.class));
+
+        if (!el.isEmpty()) return el.get(0).toString();
+        else return "No Matched Records Found";
+    }
 
 }
