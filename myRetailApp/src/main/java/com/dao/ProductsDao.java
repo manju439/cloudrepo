@@ -26,24 +26,28 @@ public class ProductsDao {
         keySpace = keyspace;
     }
 
-    /** Table Name */
+    /**
+     * Table Name
+     */
     private static final String PRODUCTS_TABLE = "products";
 
-    /** Column Names */
+    /**
+     * Column Names
+     */
     private static final String PRODUCT_ID_COLUMN = "id";
     private static final String PRODUCT_NAME_COLUMN = "name";
     private static final String PRODUCT_CURRENCY_PRICE_COLUMN = "currency_price";
     private static final String PRODUCT_CURRENCY_CODE_COLUMN = "currency_code";
 
     public List<Product> getProductDetailsById(String id) {
-        ResultSet result = session.execute("SELECT * FROM "+keySpace+"."+PRODUCTS_TABLE +" where id='"+id+"'");
+        ResultSet result = session.execute("SELECT * FROM " + keySpace + "." + PRODUCTS_TABLE + " where id='" + id + "'");
         return result.all()
                 .stream()
                 .map(this::productRowMapper)
                 .collect(Collectors.toList());
     }
 
-    public Product productRowMapper(Row row){
+    public Product productRowMapper(Row row) {
         Product product = new Product();
         product.setId(row.getString(PRODUCT_ID_COLUMN));
         product.setName(row.getString(PRODUCT_NAME_COLUMN));
@@ -53,7 +57,7 @@ public class ProductsDao {
         return product;
     }
 
-    public void upsertProductDetails(Map hm,String productId){
+    public void upsertProductDetails(Map<String, String> hm, String productId) {
         StringBuilder sb = new StringBuilder("insert into ");
         sb.append(keySpace).append(".").append(PRODUCTS_TABLE);
         sb.append(" (").append(PRODUCT_ID_COLUMN).append(",").append(PRODUCT_NAME_COLUMN).append(",");

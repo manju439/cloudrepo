@@ -23,8 +23,8 @@ public class ProductsController {
     }
 
     @RequestMapping(value = "/products/{productId}", method = RequestMethod.PUT)
-    public void upsertProductDetailsById(@PathVariable("productId") String productId, @RequestBody Map productDetails) {
-        productsDao.upsertProductDetails(productDetails,productId);
+    public void upsertProductDetailsById(@PathVariable("productId") String productId, @RequestBody Map<String, String> productDetails) {
+        productsDao.upsertProductDetails(productDetails, productId);
     }
 
 }
