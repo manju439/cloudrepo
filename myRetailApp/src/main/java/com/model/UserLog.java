@@ -2,10 +2,12 @@ package com.model;
 
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class UserLog {
     private String date;
-    private String userId;
-    private String time_utc;
+    private String address;
+    private Date time_utc;
     private String name;
 }

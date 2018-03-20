@@ -11,14 +11,25 @@ import java.util.List;
 
 @RestController
 public class UserLogController {
+
     @Autowired
     private UserLogService userLogService;
 
     @RequestMapping(value = "/userlog", method = RequestMethod.GET)
-    public @ResponseBody
-    List<UserLog> getUserLogsByDate(@ApiParam(value = "yyyy-MM-dd") @RequestParam("searchByDate") String searchByDate) {
-        System.out.println(searchByDate);
-        List<UserLog> list = userLogService.fetchUserLogsByDate(searchByDate);
-        return null;
+    public List<UserLog> getUserLogsByDate(@ApiParam(value = "yyyy-MM-dd") @RequestParam("searchByDate") String searchByDate) {
+        return userLogService.fetchUserLogsByDate(searchByDate);
+    }
+
+    @RequestMapping(value = "/userlogs", method = RequestMethod.GET)
+    public List<UserLog> getUserLogsByPage(@RequestParam("start") int start,
+                                           @RequestParam("limit") int limit) {
+        return userLogService.fetchUserLogsByPage(start, limit);
     }
 }
+
+/*
+
+@RestController ==>  @Controller + @ResponseBody
+
+@ResponseBody directly returns response to browser without rendering to view
+ */

@@ -15,4 +15,8 @@ public class UserLogService {
     public List<UserLog> fetchUserLogsByDate(String searchByDate) {
         return userLogDao.findAll(searchByDate);
     }
+
+    public List<UserLog> fetchUserLogsByPage(int start, int limit) {
+        return userLogDao.findAll(start, limit);
+    }
 }

@@ -1,9 +1,7 @@
-/target/
-
 target/
 .classpath
-.settings
-.metadata
-.mvn
+.settings/*
 *.iml
 .idea
+/*
+.apt_generated/*
