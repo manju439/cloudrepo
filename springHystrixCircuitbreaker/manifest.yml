@@ -1,0 +1,9 @@
+---
+instances: 1
+memory: 1G
+path: target/springHystrixCircuitbreaker-0.0.1-SNAPSHOT.jar
+applications:
+  - name: springHystrixCircuitbreaker
+env:
+   SPRING_PROFILES_ACTIVE: dev
+    
